@@ -13,6 +13,9 @@
 		C36C22BA1A4A5E7C003C5163 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C36C22B91A4A5E7C003C5163 /* Images.xcassets */; };
 		C36C22BD1A4A5E7C003C5163 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C36C22BB1A4A5E7C003C5163 /* LaunchScreen.xib */; };
 		C36C22C91A4A5E7C003C5163 /* AVAudioPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C22C81A4A5E7C003C5163 /* AVAudioPlayerTests.swift */; };
+		C36C22D31A4A5ED7003C5163 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36C22D21A4A5ED7003C5163 /* AVFoundation.framework */; };
+		C36C22D51A4A628C003C5163 /* audioFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C36C22D41A4A628C003C5163 /* audioFX.mp3 */; };
+		C36C22D71A4A8A9B003C5163 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = C36C22D61A4A8A9B003C5163 /* demo.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		C36C22C21A4A5E7C003C5163 /* AVAudioPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVAudioPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36C22C71A4A5E7C003C5163 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C36C22C81A4A5E7C003C5163 /* AVAudioPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioPlayerTests.swift; sourceTree = "<group>"; };
+		C36C22D21A4A5ED7003C5163 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C36C22D41A4A628C003C5163 /* audioFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audioFX.mp3; sourceTree = "<group>"; };
+		C36C22D61A4A8A9B003C5163 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36C22D31A4A5ED7003C5163 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +66,9 @@
 		C36C22A41A4A5E7C003C5163 = {
 			isa = PBXGroup;
 			children = (
+				C36C22D21A4A5ED7003C5163 /* AVFoundation.framework */,
+				C36C22D41A4A628C003C5163 /* audioFX.mp3 */,
+				C36C22D61A4A8A9B003C5163 /* demo.gif */,
 				C36C22AF1A4A5E7C003C5163 /* AVAudioPlayer */,
 				C36C22C51A4A5E7C003C5163 /* AVAudioPlayerTests */,
 				C36C22AE1A4A5E7C003C5163 /* Products */,
@@ -193,6 +203,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C36C22B81A4A5E7C003C5163 /* Main.storyboard in Resources */,
+				C36C22D51A4A628C003C5163 /* audioFX.mp3 in Resources */,
+				C36C22D71A4A8A9B003C5163 /* demo.gif in Resources */,
 				C36C22BD1A4A5E7C003C5163 /* LaunchScreen.xib in Resources */,
 				C36C22BA1A4A5E7C003C5163 /* Images.xcassets in Resources */,
 			);

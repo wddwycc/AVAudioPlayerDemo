@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="AVAudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,8 +15,103 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KD8-KD-zva">
+                                <rect key="frame" x="339" y="285" width="48" height="30"/>
+                                <state key="normal" title="Replay">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressedReplayButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ee2-kl-zOw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZi-7g-dQ4">
+                                <rect key="frame" x="230" y="285" width="33" height="30"/>
+                                <state key="normal" title="Stop">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressedStopButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="U4M-vc-7l7"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Re-te-gF5">
+                                <rect key="frame" x="235" y="264" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="U7v-8M-NHr"/>
+                                </constraints>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mvb-hM-KHj">
+                                <rect key="frame" x="285" y="285" width="30" height="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressedPlayButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PKk-cK-Zsg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LPeak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gin-aX-NLN">
+                                <rect key="frame" x="196" y="205" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LAvrg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0L-p7-Nry">
+                                <rect key="frame" x="198" y="160" width="44" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RPeak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myI-xd-OT4">
+                                <rect key="frame" x="355" y="205" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAvrg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbe-us-OS5">
+                                <rect key="frame" x="357" y="160" width="47" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mbe-us-OS5" firstAttribute="centerX" secondItem="myI-xd-OT4" secondAttribute="centerX" id="5OH-FL-5Xk"/>
+                            <constraint firstItem="KD8-KD-zva" firstAttribute="leading" secondItem="Mvb-hM-KHj" secondAttribute="trailing" constant="24" id="CoN-5S-nfh"/>
+                            <constraint firstAttribute="centerX" secondItem="Mvb-hM-KHj" secondAttribute="centerX" id="DTS-Dq-HUC"/>
+                            <constraint firstItem="gin-aX-NLN" firstAttribute="top" secondItem="F0L-p7-Nry" secondAttribute="bottom" constant="24" id="G9d-rq-ylw"/>
+                            <constraint firstItem="Mvb-hM-KHj" firstAttribute="leading" secondItem="zZi-7g-dQ4" secondAttribute="trailing" constant="22" id="LJV-Jt-ZrE"/>
+                            <constraint firstItem="gin-aX-NLN" firstAttribute="centerX" secondItem="F0L-p7-Nry" secondAttribute="centerX" id="QlF-d0-Yg4"/>
+                            <constraint firstItem="3Re-te-gF5" firstAttribute="centerX" secondItem="Mvb-hM-KHj" secondAttribute="centerX" constant="10" id="TYL-tc-fbD"/>
+                            <constraint firstItem="3Re-te-gF5" firstAttribute="top" secondItem="myI-xd-OT4" secondAttribute="bottom" constant="38" id="Xox-DH-kTP"/>
+                            <constraint firstItem="3Re-te-gF5" firstAttribute="top" secondItem="gin-aX-NLN" secondAttribute="bottom" constant="38" id="Ynw-Y7-mIO"/>
+                            <constraint firstItem="Mvb-hM-KHj" firstAttribute="centerY" secondItem="zZi-7g-dQ4" secondAttribute="centerY" id="cdL-rt-Fjp"/>
+                            <constraint firstItem="myI-xd-OT4" firstAttribute="top" secondItem="Mbe-us-OS5" secondAttribute="bottom" constant="24" id="cq5-cF-E6Y"/>
+                            <constraint firstItem="myI-xd-OT4" firstAttribute="leading" secondItem="3Re-te-gF5" secondAttribute="trailing" constant="-46" id="kTy-ag-8iF"/>
+                            <constraint firstItem="3Re-te-gF5" firstAttribute="centerY" secondItem="Mvb-hM-KHj" secondAttribute="centerY" constant="-35" id="ojm-Lo-hmb"/>
+                            <constraint firstAttribute="centerX" secondItem="gin-aX-NLN" secondAttribute="centerX" constant="80" id="pAe-yc-vex"/>
+                            <constraint firstItem="Mvb-hM-KHj" firstAttribute="centerY" secondItem="KD8-KD-zva" secondAttribute="centerY" id="qEs-ZA-5KJ"/>
+                            <constraint firstAttribute="centerX" secondItem="myI-xd-OT4" secondAttribute="centerX" constant="-80" id="uN2-CB-Kiu"/>
+                            <constraint firstAttribute="centerY" secondItem="Mvb-hM-KHj" secondAttribute="centerY" id="wqI-oa-TTe"/>
+                            <constraint firstItem="Mvb-hM-KHj" firstAttribute="top" secondItem="3Re-te-gF5" secondAttribute="bottom" constant="19" id="zkX-Rk-R7M"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ojm-Lo-hmb"/>
+                                <exclude reference="kTy-ag-8iF"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="audioProgress" destination="3Re-te-gF5" id="xIR-gh-o5h"/>
+                        <outlet property="average1" destination="F0L-p7-Nry" id="9RE-gq-yAF"/>
+                        <outlet property="average2" destination="Mbe-us-OS5" id="r5l-07-TZp"/>
+                        <outlet property="peak1" destination="gin-aX-NLN" id="Q1h-iQ-p72"/>
+                        <outlet property="peak2" destination="myI-xd-OT4" id="x6u-Tr-zua"/>
+                        <outlet property="playButton" destination="Mvb-hM-KHj" id="cPN-1C-44r"/>
+                        <outlet property="replayButton" destination="KD8-KD-zva" id="31P-kj-WGS"/>
+                        <outlet property="stopButton" destination="zZi-7g-dQ4" id="WdJ-Rt-xFw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
