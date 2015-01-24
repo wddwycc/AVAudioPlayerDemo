@@ -24,7 +24,6 @@ class ViewController: UIViewController,AVAudioPlayerDelegate {
     
     
     var player:AVAudioPlayer?
-    var playing:Bool = false
     var timer:NSTimer?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +39,7 @@ class ViewController: UIViewController,AVAudioPlayerDelegate {
         if(player == nil){
             var resourceURL = NSBundle.mainBundle().URLForResource("audioFX", withExtension: "mp3")
             var error:NSError? = NSError()
-            player = AVAudioPlayer(contentsOfURL: resourceURL?, error: &error)
+            player = AVAudioPlayer(contentsOfURL: resourceURL, error: &error)
             player!.meteringEnabled = true
             player!.prepareToPlay() //add into the buffer
         }
@@ -54,9 +53,8 @@ class ViewController: UIViewController,AVAudioPlayerDelegate {
 //                player!.playAtTime(player!.deviceCurrentTime+delayTime)
                 
                 player!.play()
-                self.enableTimer()
+                enableTimer()
                 player!.delegate = self
-                self.playing = true
             }
         
     }
@@ -64,16 +62,14 @@ class ViewController: UIViewController,AVAudioPlayerDelegate {
     
     @IBAction func didPressedStopButton(sender: AnyObject) {
         if(player != nil){
-            if(self.playing == true){
-                self.endTimer()
+            if(player?.playing == true){
+                endTimer()
                 player!.pause()
                 stopButton.setTitle("Resume", forState: UIControlState.Normal)
-                playing = false
             }else{
                 player!.play()
-                self.enableTimer()
+                enableTimer()
                 stopButton.setTitle("Stop", forState: UIControlState.Normal)
-                playing = true
             }
             
         }
@@ -81,11 +77,11 @@ class ViewController: UIViewController,AVAudioPlayerDelegate {
     
     
     @IBAction func didPressedReplayButton(sender: AnyObject) {
-        if(player != nil){
-            self.endTimer()
-            self.player = nil
+        if player != nil{
+            endTimer()
+            player = nil
             stopButton.setTitle("Stop", forState: UIControlState.Normal)
-            self.didPressedPlayButton(replayButton)
+            didPressedPlayButton(replayButton)
         }
         
     }
@@ -94,9 +90,7 @@ class ViewController: UIViewController,AVAudioPlayerDelegate {
 //delegate
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
-        self.endTimer()
-        self.playing = false
-        
+        endTimer()
     }
     func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer!, error: NSError!) {
         println("\(error)  in  \(player)")
@@ -119,27 +113,26 @@ class ViewController: UIViewController,AVAudioPlayerDelegate {
     
 //tIMER
     func enableTimer(){
-        if(self.player != nil){
+        if(player != nil){
             timer = NSTimer(timeInterval: 0.1, target: self, selector: "updateProgress", userInfo: nil, repeats: true)
             NSRunLoop.mainRunLoop().addTimer(timer!, forMode: "NSDefaultRunLoopMode")
         }
     }
     func endTimer(){
-        if(self.timer != nil){
+        if(timer != nil){
             timer!.invalidate()
         }
     }
 
     func updateProgress(){
-        if(self.player != nil){
-            self.player!.updateMeters() //refresh state
-            self.audioProgress.progress = Float(self.player!.currentTime/self.player!.duration)
-            self.average1.text = "LAvrg:\(self.player!.averagePowerForChannel(0))"
-            self.average2.text = "RAvrg:\(self.player!.averagePowerForChannel(1))"
-            self.peak1.text = "LPeak:\(self.player!.peakPowerForChannel(0))"
-            self.peak2.text = "RPeak:\(self.player!.peakPowerForChannel(1))"
+        if(player != nil){
+            player!.updateMeters() //refresh state
+            audioProgress.progress = Float(player!.currentTime/player!.duration)
+            average1.text = "LAvrg:\(player!.averagePowerForChannel(0))"
+            average2.text = "RAvrg:\(player!.averagePowerForChannel(1))"
+            peak1.text = "LPeak:\(player!.peakPowerForChannel(0))"
+            peak2.text = "RPeak:\(player!.peakPowerForChannel(1))"
         }
     }
     
 }
-
